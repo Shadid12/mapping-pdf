@@ -36,9 +36,12 @@ class App extends Component {
           resetHighlights={this.resetHighlights}
         />
         <PdfLoader url={url} beforeLoad={<Spinner />}>
-          {pdfDocument => (
-            <div>pdfDocument</div>
-          )}
+          { pdfDocument => (
+              <PdfAnnotator 
+                pdfDocument ={pdfDocument}
+              />
+            )
+          }
         </PdfLoader>
       </div>
     );
