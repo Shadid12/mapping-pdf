@@ -28,6 +28,14 @@ class App extends Component {
     highlights: testHighlights[DEFAULT_URL] ? [...testHighlights[DEFAULT_URL]] : []
   };
 
+  componentDidMount() {
+    window.addEventListener(
+      "hashchange",
+      this.scrollToHighlightFromHash,
+      false
+    );
+  };
+
   scrollViewerTo = (highlight) => {};
 
   getHighlightById(id) {
