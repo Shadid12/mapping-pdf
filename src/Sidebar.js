@@ -3,9 +3,9 @@ import React from "react";
 
 export default class Sidebar extends React.Component {
 
-    updateHash = (highlight) => {
-        console.log(highlight.id);
-    }
+    updateHash = highlight => {
+        window.location.hash = `highlight-${highlight.id}`;
+    };
 
     render() {
         const highlitedItem = this.props.highlights.map(( highlight, index ) => (
