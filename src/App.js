@@ -4,12 +4,23 @@ import './App.css';
 
 //lib
 import URLSearchParams from "url-search-params";
+import {
+  PdfLoader,
+  PdfAnnotator,
+  Tip,
+  Highlight,
+  Popup,
+  AreaHighlight
+} from "react-pdf-highlighter";
 
 // components
 import testHighlights from "./testHighlights";
 import Sidebar from "./Sidebar";
+import Spinner from './Spinner';
 
 const DEFAULT_URL = "https://arxiv.org/pdf/1708.08021.pdf";
+const searchParams = new URLSearchParams(window.location.search);
+const url = searchParams.get("url") || DEFAULT_URL
 
 class App extends Component {
   state = {
@@ -24,6 +35,11 @@ class App extends Component {
           highlights={highlights}
           resetHighlights={this.resetHighlights}
         />
+        <PdfLoader url={url} beforeLoad={<Spinner />}>
+          {pdfDocument => (
+            <div>pdfDocument</div>
+          )}
+        </PdfLoader>
       </div>
     );
   }
