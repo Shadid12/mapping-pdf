@@ -26,6 +26,13 @@
   font-size: large;
 }
 
+.scroll-table {
+  /* position: fixed; */
+  overflow-y: scroll;
+  height: 100%;
+  /* overflow: hidden; */
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
