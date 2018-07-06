@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
+import LoopIcon from '@material-ui/icons/Loop';
 
 // css
 import './Sidebar.css'
@@ -30,8 +31,11 @@ export default class Sidebar extends React.Component {
                 <div>
                     {highlight.content.text ? (
                         <blockquote style={{ marginTop: "0.5rem" }}>
-                            {`${highlight.content.text.slice(0, 90).trim()}`}
-                            <IconButton aria-label="Delete">
+                            {highlight.comment.text}
+                            <IconButton 
+                                aria-label="Delete"
+                                style={{ fontSize: 8 }}
+                            >
                                 <DeleteIcon 
                                     onClick={() => {
                                         this.props.deleteHighlight(highlight.id);
@@ -46,7 +50,7 @@ export default class Sidebar extends React.Component {
         return(
             <div>
                 <IconButton aria-label="Delete">
-                    <DeleteIcon 
+                    <LoopIcon 
                         onClick={() => {
                             this.props.resetHighlights();
                         }}

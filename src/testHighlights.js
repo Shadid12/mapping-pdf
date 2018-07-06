@@ -3,7 +3,7 @@
 const testHighlights = { 'sample': [
   {
     comment: {
-      text: 'Executive/Insured Entity Wrongdoing',
+      text: 'Policy No',
       emoji: ""
     },
     content: {
