@@ -1,4 +1,8 @@
 import React from "react";
+import Paper from '@material-ui/core/Paper';
+
+// css
+import './Sidebar.css'
 
 
 export default class Sidebar extends React.Component {
@@ -9,7 +13,8 @@ export default class Sidebar extends React.Component {
 
     render() {
         const highlitedItem = this.props.highlights.map(( highlight, index ) => (
-            <li
+            <Paper
+                className='paper'
                 key={index}
                 onClick={() => {
                     this.updateHash(highlight);
@@ -18,7 +23,7 @@ export default class Sidebar extends React.Component {
                 <div>
                     {highlight.content.text ? (
                         <blockquote style={{ marginTop: "0.5rem" }}>
-                            {`${highlight.content.text.slice(0, 90).trim()}…`}
+                            {`${highlight.content.text.slice(0, 90).trim()}`}
                         </blockquote>
                     ) : null}
                     {/* {highlight.content.image ? (
@@ -30,7 +35,7 @@ export default class Sidebar extends React.Component {
                         </div>
                     ) : null} */}
                 </div>
-            </li>
+            </Paper>
         ))
         return(
             <div style={{'maxWidth': '200px'}}>

@@ -4,6 +4,7 @@ import './App.css';
 
 //lib
 import URLSearchParams from "url-search-params";
+import Grid from '@material-ui/core/Grid';
 import {
   PdfLoader,
   PdfAnnotator,
@@ -17,12 +18,26 @@ import {
 import testHighlights from "./testHighlights";
 import Sidebar from "./Sidebar";
 import Spinner from './Spinner';
-import pdfFile from './sample.pdf'
+import pdfFile from './sample.pdf';
 
 const DEFAULT_URL = pdfFile;
 const searchParams = new URLSearchParams(window.location.search);
 const url = searchParams.get("url") || DEFAULT_URL;
 const parseIdFromHash = () => window.location.hash.slice("#highlight-".length);
+
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
+
+
 
 class App extends Component {
   state = {
@@ -85,10 +100,11 @@ class App extends Component {
       highlights: [{ ...highlight, id: this.getNextId() }, ...highlights]
     });
   }
+  
 
   render() {
     const { highlights } = this.state;
-
+    
     const HighlightPopup = ({ comment }) =>
       comment.text ? (
         <div className="Highlight__popup">
@@ -98,11 +114,15 @@ class App extends Component {
 
     return (
       <div className="App" style={{ display: "flex", height: "100vh" }}>
-        <Sidebar
-          highlights={highlights}
-          resetHighlights={this.resetHighlights}
-        />
-        <PdfLoader url={url} beforeLoad={<Spinner />}>
+        <Grid container spacing={24}>
+          <Grid item xs={12} sm={6}>
+              <Sidebar
+                highlights={highlights}
+                resetHighlights={this.resetHighlights}
+              />
+          </Grid>
+        </Grid>
+        {/* <PdfLoader url={url} beforeLoad={<Spinner />}>
           { pdfDocument => (
               <PdfAnnotator 
                 pdfDocument ={pdfDocument}
@@ -181,7 +201,7 @@ class App extends Component {
               />
             )
           }
-        </PdfLoader>
+        </PdfLoader> */}
       </div>
     );
   }
