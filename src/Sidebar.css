@@ -12,3 +12,11 @@
     box-shadow: 0 10px 23px rgba(0,0,0,0.12), 0 5px 5px rgba(0,0,0,0.24);
     transform: translateY(-1px);
 }
+
+.sidebar--container {
+    padding-right: 25px;
+}
+
+.button--cs {
+    padding-top: 20px;
+}

@@ -5,6 +5,15 @@ import './App.css';
 //lib
 import URLSearchParams from "url-search-params";
 import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
+
 import {
   PdfLoader,
   PdfAnnotator,
@@ -113,13 +122,118 @@ class App extends Component {
     ) : null;
 
     return (
-      <div className="App" style={{ display: "flex", height: "100vh" }}>
-        <Grid container spacing={24}>
-          <Grid item xs={12} sm={6}>
+      <div>
+        <AppBar position="sticky">
+          <Toolbar>
+            <IconButton className='' color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <IconButton className='' color="inherit" aria-label="Menu">
+              <AccountCircle></AccountCircle>
+            </IconButton>
+            <Typography variant="title" color="inherit" className=''>
+              Chisel
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <div className="App" style={{ display: "flex", height: "100vh" }}>
+        <Grid container>
+          <Grid item xs={6} sm={3}>
               <Sidebar
                 highlights={highlights}
                 resetHighlights={this.resetHighlights}
               />
+          </Grid>
+          <Grid item xs={12} sm={6} className='show'>
+            <div
+              style={{
+                height: "100vh",
+                width: "70vw",
+                overflowY: "scroll",
+                position: "relative"
+              }}
+            >
+            <PdfLoader url={url} beforeLoad={<Spinner />}>
+              { pdfDocument => (
+                  <PdfAnnotator 
+                    pdfDocument ={pdfDocument}
+                    enableAreaSelection={event => event.altKey}
+                    onScrollChange={this.resetHash}
+                    scrollRef={scrollTo => {
+                      this.scrollViewerTo = scrollTo;
+
+                      this.scrollToHighlightFromHash();
+                    }}
+                    url={url}
+                    onSelectionFinished={(
+                      position,
+                      content,
+                      hideTipAndSelection,
+                      transformSelection
+                    ) => (
+                      <Tip
+                        onOpen={transformSelection}
+                        onConfirm={comment => {
+                          this.addHighlight({ content, position, comment });
+
+                          hideTipAndSelection();
+                        }}
+                      />
+                    )
+                    }
+
+
+                    highlightTransform={(
+                      highlight,
+                      index,
+                      setTip,
+                      hideTip,
+                      viewportToScaled,
+                      screenshot,
+                      isScrolledTo
+                    ) => {
+                      const isTextHighlight = !Boolean(
+                        highlight.content && highlight.content.image
+                      );
+
+                      const component = isTextHighlight ? (
+                        <Highlight
+                          isScrolledTo={isScrolledTo}
+                          position={highlight.position}
+                          comment={highlight.comment}
+                        />
+                      ) : (
+                        <AreaHighlight
+                          highlight={highlight}
+                          onChange={boundingRect => {
+                            this.updateHighlight(
+                              highlight.id,
+                              { boundingRect: viewportToScaled(boundingRect) },
+                              { image: screenshot(boundingRect) }
+                            );
+                          }}
+                        />
+                      )
+
+                      return (
+                        <Popup
+                          popupContent={<HighlightPopup {...highlight} />}
+                          onMouseOver={popupContent =>
+                            setTip(highlight, highlight => popupContent)
+                          }
+                          onMouseOut={hideTip}
+                          key={index}
+                          children={component}
+                        />
+                      );
+
+                    }}
+                    highlights={highlights}
+                  />
+                )
+              }
+            </PdfLoader>
+            </div>
           </Grid>
         </Grid>
         {/* <PdfLoader url={url} beforeLoad={<Spinner />}>
@@ -202,6 +316,7 @@ class App extends Component {
             )
           }
         </PdfLoader> */}
+      </div>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 // css
 import './Sidebar.css'
@@ -38,9 +39,11 @@ export default class Sidebar extends React.Component {
             </Paper>
         ))
         return(
-            <div style={{'maxWidth': '200px'}}>
-                <h3>Sidebar</h3>
-                <ul>
+            <div>
+                <Button variant="contained" color="secondary" className='button--cs'>
+                    Upload
+                </Button>
+                <ul className='sidebar--container'>
                     { highlitedItem }
                 </ul>
             </div>
