@@ -15,11 +15,25 @@ export default class Sidebar extends React.Component {
                     this.updateHash(highlight);
                 }}
             >
-                I am a A Fool
+                <div>
+                    {highlight.content.text ? (
+                        <blockquote style={{ marginTop: "0.5rem" }}>
+                            {`${highlight.content.text.slice(0, 90).trim()}…`}
+                        </blockquote>
+                    ) : null}
+                    {/* {highlight.content.image ? (
+                        <div
+                            className="highlight__image"
+                            style={{ marginTop: "0.5rem" }}
+                        >
+                            <img src={highlight.content.image} alt={"Screenshot"} />
+                        </div>
+                    ) : null} */}
+                </div>
             </li>
         ))
         return(
-            <div>
+            <div style={{'maxWidth': '200px'}}>
                 <h3>Sidebar</h3>
                 <ul>
                     { highlitedItem }

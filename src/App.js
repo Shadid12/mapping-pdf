@@ -17,15 +17,16 @@ import {
 import testHighlights from "./testHighlights";
 import Sidebar from "./Sidebar";
 import Spinner from './Spinner';
+import pdfFile from './sample.pdf'
 
-const DEFAULT_URL = "https://arxiv.org/pdf/1708.08021.pdf";
+const DEFAULT_URL = pdfFile;
 const searchParams = new URLSearchParams(window.location.search);
 const url = searchParams.get("url") || DEFAULT_URL;
 const parseIdFromHash = () => window.location.hash.slice("#highlight-".length);
 
 class App extends Component {
   state = {
-    highlights: testHighlights[DEFAULT_URL] ? [...testHighlights[DEFAULT_URL]] : []
+    highlights: testHighlights['sample'] ? [...testHighlights['sample']] : []
   };
 
   componentDidMount() {
