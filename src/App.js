@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
+import download from 'downloadjs';
 
 import {
   PdfLoader,
@@ -123,7 +123,14 @@ class App extends Component {
   }
 
 
-  
+  downloadTree = () => {
+    let obj = this.state.highlights;
+    let template = {
+      'sample': obj
+    }
+    let data = JSON.stringify(template);
+    download(data, "tree.json", "text/plain");
+  }
 
   render() {
     const { highlights } = this.state;
@@ -150,7 +157,13 @@ class App extends Component {
             </Typography>
             <div className='title'></div>
             <div className='title'>
-              <Button variant="outlined" color="secondary">Download Json</Button>
+              <Button 
+                variant="outlined" 
+                color="secondary"
+                onClick={this.downloadTree}
+              >
+                Download Json
+              </Button>
             </div>
           </Toolbar>
         </AppBar>
