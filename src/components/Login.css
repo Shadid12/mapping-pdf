@@ -17,10 +17,17 @@
 }
 
 .txt-area {
+    margin-top: 20px;
+    padding: 20px;
     display: flex;
 }
 
 .btn-area {
     margin-top: 20px;
     padding: 30px;
+}
+
+.login-icons {
+    margin-top: 23px;
+    padding-right: 20px;
 }

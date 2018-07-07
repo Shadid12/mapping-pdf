@@ -5,6 +5,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import blue from '@material-ui/core/colors/blue';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import LockIcon from '@material-ui/icons/Lock'
 
 //css
 import './Login.css'
@@ -34,11 +37,13 @@ export default class Login extends React.Component {
                             </Tabs>
                             <div className='text-area-container'>
                                 <div className='txt-area'>
+                                    <AccountCircleIcon className='login-icons' />
                                     <TextField
                                         label="Username"
                                     />
                                 </div>
                                 <div className='txt-area'>
+                                    <LockIcon className='login-icons' />
                                     <TextField
                                         label="Password"
                                         type="password"
