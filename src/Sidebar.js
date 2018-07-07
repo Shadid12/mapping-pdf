@@ -9,6 +9,7 @@ import LoopIcon from '@material-ui/icons/Loop';
 import './Sidebar.css'
 
 
+
 export default class Sidebar extends React.Component {
 
     updateHash = highlight => {
