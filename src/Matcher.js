@@ -52,7 +52,8 @@ const styles = theme => ({
 
 class Matcher extends Component {
   state = {
-    highlights: testHighlights['sample'] ? [...testHighlights['sample']] : []
+    highlights: testHighlights['sample'] ? [...testHighlights['sample']] : [],
+    showTree: true
   };
 
   componentDidMount() {
