@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import TextField from '@material-ui/core/TextField';
 
 //css
 import './Login.css'
@@ -30,6 +31,19 @@ export default class Login extends React.Component {
                                 <Tab label="Login" />
                                 <Tab label="Signup" />
                             </Tabs>
+                            <div className='text-area-container'>
+                                <div className='txt-area'>
+                                    <TextField
+                                        label="Username"
+                                    />
+                                </div>
+                                <div className='txt-area'>
+                                    <TextField
+                                        label="Password"
+                                        type="password"
+                                    />
+                                </div>
+                            </div>
                         </Paper>
                         <Grid item xs={12} sm={12}></Grid>
                     </Grid>

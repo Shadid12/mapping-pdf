@@ -7,3 +7,14 @@
 .placeholder {
     display: flex;
 }
+
+.text-area-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.txt-area {
+    display: flex;
+}
