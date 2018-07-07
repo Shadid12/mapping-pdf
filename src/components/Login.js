@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 //css
 import './Login.css'
@@ -42,6 +43,13 @@ export default class Login extends React.Component {
                                         label="Password"
                                         type="password"
                                     />
+                                </div>
+                                <div className='btn-area'>
+                                    <Button variant="contained" 
+                                            color="primary" 
+                                    >
+                                        Login
+                                    </Button>
                                 </div>
                             </div>
                         </Paper>
