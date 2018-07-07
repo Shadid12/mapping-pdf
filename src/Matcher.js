@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import download from 'downloadjs';
+import { Link } from "react-router-dom";
 
 import {
   PdfLoader,
@@ -151,7 +152,14 @@ class Matcher extends Component {
             <IconButton className='' color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <IconButton className='' color="inherit" aria-label="Menu">
+            <IconButton 
+              className='' 
+              color="inherit" 
+              aria-label="Menu"
+              onClick={() => {
+                window.location.href='/login'
+              }}
+            >
               <AccountCircle></AccountCircle>
             </IconButton>
             <Typography variant="title" color="inherit" className='title'>

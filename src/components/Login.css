@@ -1,0 +1,9 @@
+.paper-container {
+    text-align: 'center';
+    padding: 20px;
+
+}
+
+.placeholder {
+    display: flex;
+}
