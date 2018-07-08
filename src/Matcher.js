@@ -30,6 +30,7 @@ import Spinner from './Spinner';
 import JsonTreeView from './components/JsonTreeView';
 import pdfFile from './sample.pdf';
 import Switch from '@material-ui/core/Switch';
+import Sorter from './components/sorter/Sorter'
 
 
 
@@ -119,7 +120,6 @@ class Matcher extends Component {
 
   addHighlight(highlight) {
     const { highlights } = this.state;
-
     console.log("Saving highlight", highlight);
 
     this.setState({
@@ -189,7 +189,7 @@ class Matcher extends Component {
         {/* Matcher */}
         {
           this.state.showTree ? (
-            <JsonTreeView tree={this.state.highlights}/>
+            <Sorter tree={this.state.highlights}/>
           ) :
           (
 

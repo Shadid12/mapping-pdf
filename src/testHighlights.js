@@ -3,6 +3,8 @@
 const testHighlights = {
   "sample":[
      {
+        "title": "BILATERAL DISCOVERY PERCENTAGE",
+        "children": [],
         "content":{
            "text":"BILATERAL DISCOVERY PERCENTAGE"
         },
@@ -34,6 +36,8 @@ const testHighlights = {
         "id":"9198246662034206"
      },
      {
+        "title": "POLICY FORM",
+        "children": [],
         "content":{
            "text":"POLICY FORM"
         },
@@ -65,6 +69,8 @@ const testHighlights = {
         "id":"6447540717638041"
      },
      {
+       "title": "Fiduciary Wrongdoing",
+       "children": [],
         "content":{
            "text":"Fiduciary Wrongdoing N/A N/A"
         },
@@ -112,6 +118,8 @@ const testHighlights = {
         "id":"4071168086002179"
      },
      {
+        "title": "CURRENCY",
+        "children": [],
         "content":{
            "text":"CURRENCY: CAD"
         },
@@ -151,6 +159,8 @@ const testHighlights = {
         "id":"09427443831608895"
      },
      {
+        "title": "Knote Private Advantage",
+        "children": [],
         "content":{
            "text":"Knote Private Advantage Liability Policy KNO (10/31)"
         },
@@ -190,6 +200,8 @@ const testHighlights = {
         "id":"008829261847954184"
      },
      {
+        "title": "ANNUAL",
+        "children": [],
         "content":{
            "text":"ANNUAL PREMIUM"
         },
@@ -229,6 +241,8 @@ const testHighlights = {
         "id":"20190693682611172"
      },
      {
+        "title": "Executive/Insured Entity",
+        "children": [],
         "content":{
            "text":"Executive/Insured Entity Wrongdoing $5,000,000 $10,000"
         },
@@ -284,6 +298,8 @@ const testHighlights = {
         "id":"7112959195000266"
      },
      {
+        "title": "Policy",
+        "children": [],
         "comment":{
            "text":"Policy No",
            "emoji":""
