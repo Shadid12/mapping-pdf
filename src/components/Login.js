@@ -51,7 +51,8 @@ export default class Login extends React.Component {
                                 </div>
                                 <div className='btn-area'>
                                     <Button variant="contained" 
-                                            color="primary" 
+                                            color="primary"
+                                            onClick={() => window.location.href='/'} 
                                     >
                                         Login
                                     </Button>

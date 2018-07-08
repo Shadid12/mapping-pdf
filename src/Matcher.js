@@ -27,7 +27,9 @@ import {
 import testHighlights from "./testHighlights";
 import Sidebar from "./Sidebar";
 import Spinner from './Spinner';
+import JsonTreeView from './components/JsonTreeView';
 import pdfFile from './sample.pdf';
+import Switch from '@material-ui/core/Switch';
 
 
 
@@ -53,7 +55,7 @@ const styles = theme => ({
 class Matcher extends Component {
   state = {
     highlights: testHighlights['sample'] ? [...testHighlights['sample']] : [],
-    showTree: true
+    showTree: false
   };
 
   componentDidMount() {
@@ -166,6 +168,12 @@ class Matcher extends Component {
             <Typography variant="title" color="inherit" className='title'>
               Chisel
             </Typography>
+            <Switch
+              onChange={() => {
+                this.setState({showTree: !this.state.showTree})
+              }}
+              color="secondary"
+            />
             <div className='title'></div>
             <div className='title'>
               <Button 
@@ -179,110 +187,119 @@ class Matcher extends Component {
           </Toolbar>
         </AppBar>
         {/* Matcher */}
-        <div className="App" style={{ display: "flex", height: "100vh" }}>
-          <Grid container>
-            <Grid item xs={6} sm={3}>
-                <div className='scroll-table'>
-                  <Sidebar
-                    highlights={highlights}
-                    resetHighlights={this.resetHighlights}
-                    deleteHighlight={this.deleteHighlight}
-                  />
-                </div>
-            </Grid>
-            <Grid item xs={12} sm={6} className='show'>
-              <div
-                style={{
-                  height: "100vh",
-                  width: "70vw",
-                  overflowY: "scroll",
-                  position: "relative"
-                }}
-              >
-              <PdfLoader url={url} beforeLoad={<Spinner />}>
-                { pdfDocument => (
-                    <PdfAnnotator 
-                      pdfDocument ={pdfDocument}
-                      enableAreaSelection={event => event.altKey}
-                      onScrollChange={this.resetHash}
-                      scrollRef={scrollTo => {
-                        this.scrollViewerTo = scrollTo;
+        {
+          this.state.showTree ? (
+            <JsonTreeView tree={this.state.highlights}/>
+          ) :
+          (
 
-                        this.scrollToHighlightFromHash();
-                      }}
-                      url={url}
-                      onSelectionFinished={(
-                        position,
-                        content,
-                        hideTipAndSelection,
-                        transformSelection
-                      ) => (
-                        <Tip
-                          onOpen={transformSelection}
-                          onConfirm={comment => {
-                            this.addHighlight({ content, position, comment });
+          <div className="App" style={{ display: "flex", height: "100vh" }}>
+            <Grid container>
+              <Grid item xs={6} sm={3}>
+                  <div className='scroll-table'>
+                    <Sidebar
+                      highlights={highlights}
+                      resetHighlights={this.resetHighlights}
+                      deleteHighlight={this.deleteHighlight}
+                    />
+                  </div>
+              </Grid>
+              <Grid item xs={12} sm={6} className='show'>
+                <div
+                  style={{
+                    height: "100vh",
+                    width: "70vw",
+                    overflowY: "scroll",
+                    position: "relative"
+                  }}
+                >
+                <PdfLoader url={url} beforeLoad={<Spinner />}>
+                  { pdfDocument => (
+                      <PdfAnnotator 
+                        pdfDocument ={pdfDocument}
+                        enableAreaSelection={event => event.altKey}
+                        onScrollChange={this.resetHash}
+                        scrollRef={scrollTo => {
+                          this.scrollViewerTo = scrollTo;
 
-                            hideTipAndSelection();
-                          }}
-                        />
-                      )
-                      }
+                          this.scrollToHighlightFromHash();
+                        }}
+                        url={url}
+                        onSelectionFinished={(
+                          position,
+                          content,
+                          hideTipAndSelection,
+                          transformSelection
+                        ) => (
+                          <Tip
+                            onOpen={transformSelection}
+                            onConfirm={comment => {
+                              this.addHighlight({ content, position, comment });
 
-
-                      highlightTransform={(
-                        highlight,
-                        index,
-                        setTip,
-                        hideTip,
-                        viewportToScaled,
-                        screenshot,
-                        isScrolledTo
-                      ) => {
-                        const isTextHighlight = !Boolean(
-                          highlight.content && highlight.content.image
-                        );
-
-                        const component = isTextHighlight ? (
-                          <Highlight
-                            isScrolledTo={isScrolledTo}
-                            position={highlight.position}
-                            comment={highlight.comment}
-                          />
-                        ) : (
-                          <AreaHighlight
-                            highlight={highlight}
-                            onChange={boundingRect => {
-                              this.updateHighlight(
-                                highlight.id,
-                                { boundingRect: viewportToScaled(boundingRect) },
-                                { image: screenshot(boundingRect) }
-                              );
+                              hideTipAndSelection();
                             }}
                           />
                         )
+                        }
 
-                        return (
-                          <Popup
-                            popupContent={<HighlightPopup {...highlight} />}
-                            onMouseOver={popupContent =>
-                              setTip(highlight, highlight => popupContent)
-                            }
-                            onMouseOut={hideTip}
-                            key={index}
-                            children={component}
-                          />
-                        );
 
-                      }}
-                      highlights={highlights}
-                    />
-                  )
-                }
-              </PdfLoader>
-              </div>
+                        highlightTransform={(
+                          highlight,
+                          index,
+                          setTip,
+                          hideTip,
+                          viewportToScaled,
+                          screenshot,
+                          isScrolledTo
+                        ) => {
+                          const isTextHighlight = !Boolean(
+                            highlight.content && highlight.content.image
+                          );
+
+                          const component = isTextHighlight ? (
+                            <Highlight
+                              isScrolledTo={isScrolledTo}
+                              position={highlight.position}
+                              comment={highlight.comment}
+                            />
+                          ) : (
+                            <AreaHighlight
+                              highlight={highlight}
+                              onChange={boundingRect => {
+                                this.updateHighlight(
+                                  highlight.id,
+                                  { boundingRect: viewportToScaled(boundingRect) },
+                                  { image: screenshot(boundingRect) }
+                                );
+                              }}
+                            />
+                          )
+
+                          return (
+                            <Popup
+                              popupContent={<HighlightPopup {...highlight} />}
+                              onMouseOver={popupContent =>
+                                setTip(highlight, highlight => popupContent)
+                              }
+                              onMouseOut={hideTip}
+                              key={index}
+                              children={component}
+                            />
+                          );
+
+                        }}
+                        highlights={highlights}
+                      />
+                    )
+                  }
+                </PdfLoader>
+                </div>
+              </Grid>
             </Grid>
-          </Grid>
-        </div>
+          </div>
+
+          )
+        }
       </div>
             
     );
