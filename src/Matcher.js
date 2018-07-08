@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import download from 'downloadjs';
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom'
 
 import {
   PdfLoader,
@@ -160,7 +161,8 @@ class Matcher extends Component {
               color="inherit" 
               aria-label="Menu"
               onClick={() => {
-                window.location.href='/login'
+                this.props.history.push('/login')
+                // window.location.href='/login'
               }}
             >
               <AccountCircle></AccountCircle>
@@ -306,4 +308,4 @@ class Matcher extends Component {
   }
 }
 
-export default Matcher;
+export default withRouter(Matcher);
