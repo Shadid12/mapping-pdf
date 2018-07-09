@@ -2,12 +2,15 @@ import React from "react";
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import DoneIcon from '@material-ui/icons/Done';
 import IconButton from '@material-ui/core/IconButton';
 import LoopIcon from '@material-ui/icons/Loop';
 
 // css
 import './Sidebar.css'
 
+// dummy data
+import testHighlights from "./testHighlights";
 
 
 export default class Sidebar extends React.Component {
@@ -21,7 +24,8 @@ export default class Sidebar extends React.Component {
     }
 
     render() {
-        const highlitedItem = this.props.highlights.map(( highlight, index ) => (
+        const highlights = testHighlights['sample'];
+        const highlitedItem = highlights.map(( highlight, index ) => (
             <Paper
                 className='paper'
                 key={index}
@@ -33,16 +37,25 @@ export default class Sidebar extends React.Component {
                     {highlight.content.text ? (
                         <blockquote style={{ marginTop: "0.5rem" }}>
                             {highlight.comment.text}
-                            <IconButton 
-                                aria-label="Delete"
-                                style={{ fontSize: 8 }}
-                            >
-                                <DeleteIcon 
-                                    onClick={() => {
-                                        this.props.deleteHighlight(highlight.id);
-                                    }}
-                                />
-                            </IconButton>
+                            <div>
+                                <IconButton 
+                                    aria-label="Delete"
+                                    style={{ fontSize: 8 }}
+                                >
+                                    <DeleteIcon 
+                                        onClick={() => {
+                                            this.props.deleteHighlight(highlight.id);
+                                        }}
+                                    />
+                                </IconButton>
+                                <IconButton>
+                                    <DoneIcon
+                                        onClick={() => {
+                                            this.props.addHighlight(highlight.id);
+                                        }}
+                                    />
+                                </IconButton>
+                            </div>
                         </blockquote>
                     ) : null}
                 </div>

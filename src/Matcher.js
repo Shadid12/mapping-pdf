@@ -128,6 +128,15 @@ class Matcher extends Component {
     });
   }
 
+  readdHighlight = (id) => {
+    const { highlights } = this.state;
+    testHighlights['sample'].filter((item) => {
+      if(item.id === id) {
+        this.setState({ highlights: [item, ...highlights] })
+      }
+    })
+  }
+
 
   downloadTree = () => {
     let obj = this.state.highlights;
@@ -170,12 +179,6 @@ class Matcher extends Component {
             <Typography variant="title" color="inherit" className='title'>
               Chisel
             </Typography>
-            <Switch
-              onChange={() => {
-                this.setState({showTree: !this.state.showTree})
-              }}
-              color="secondary"
-            />
             <div className='title'></div>
             <div className='title'>
               <Button 
@@ -203,6 +206,7 @@ class Matcher extends Component {
                       highlights={highlights}
                       resetHighlights={this.resetHighlights}
                       deleteHighlight={this.deleteHighlight}
+                      addHighlight={this.readdHighlight}
                     />
                   </div>
               </Grid>
