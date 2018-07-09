@@ -123,9 +123,9 @@ class Matcher extends Component {
     const { highlights } = this.state;
     console.log("Saving highlight", highlight);
 
-    this.setState({
-      highlights: [{ ...highlight, id: this.getNextId() }, ...highlights]
-    });
+    // this.setState({
+    //   highlights: [{ ...highlight, id: this.getNextId() }, ...highlights]
+    // });
   }
 
   readdHighlight = (id) => {
@@ -160,7 +160,7 @@ class Matcher extends Component {
     return (
 
       <div>
-        <AppBar position="sticky">
+        {/* <AppBar position="sticky">
           <Toolbar>
             <IconButton className='' color="inherit" aria-label="Menu">
               <MenuIcon />
@@ -190,7 +190,7 @@ class Matcher extends Component {
               </Button>
             </div>
           </Toolbar>
-        </AppBar>
+        </AppBar> */}
         {/* Matcher */}
         {
           this.state.showTree ? (
@@ -198,7 +198,7 @@ class Matcher extends Component {
           ) :
           (
 
-          <div className="App" style={{ display: "flex", height: "100vh" }}>
+          <div className="App" style={{height: "50vh" }}>
             <Grid container>
               <Grid item xs={6} sm={3}>
                   <div className='scroll-table'>
@@ -213,7 +213,7 @@ class Matcher extends Component {
               <Grid item xs={12} sm={6} className='show'>
                 <div
                   style={{
-                    height: "100vh",
+                    height: "90vh",
                     width: "70vw",
                     overflowY: "scroll",
                     position: "relative"

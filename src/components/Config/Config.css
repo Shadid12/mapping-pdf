@@ -1,0 +1,19 @@
+.main-config-container {
+    display: flex;
+    padding: 0px;
+    flex-direction: column;
+}
+
+.matcher-containe {
+    display: flex;
+    padding: 20px;
+}
+
+.step-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-container {
+    margin: 20px;
+}
