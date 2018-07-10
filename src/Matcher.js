@@ -58,7 +58,8 @@ class Matcher extends Component {
   state = {
     highlights: testHighlights['sample'] ? [...testHighlights['sample']] : [],
     showTree: false,
-    flip: false
+    flip: false,
+    appliedHighlights: []
   };
 
   componentDidMount() {
@@ -70,9 +71,9 @@ class Matcher extends Component {
   };
 
   deleteHighlight = (id) => {
-      let  highlights = this.state.highlights;
+      let  highlights = this.state.appliedHighlights;
       const newArray = highlights.filter(obj => obj.id !== id);
-      this.setState({highlights: newArray});
+      this.setState({appliedHighlights: newArray});
   }
 
   scrollViewerTo = (highlight) => {};
@@ -130,10 +131,12 @@ class Matcher extends Component {
   }
 
   readdHighlight = (id) => {
-    const { highlights } = this.state;
+    const { highlights, appliedHighlights } = this.state;
     testHighlights['sample'].filter((item) => {
       if(item.id === id) {
-        this.setState({ highlights: [item, ...highlights] })
+        this.setState({  
+                        appliedHighlights: [item, ...appliedHighlights]  
+                      });
       }
     })
   }
@@ -199,6 +202,7 @@ class Matcher extends Component {
               <Grid item xs={6} sm={3}>
                   <div className='scroll-table'>
                     <Sidebar
+                      appliedHighlights={this.state.appliedHighlights}
                       highlights={highlights}
                       resetHighlights={this.resetHighlights}
                       deleteHighlight={this.deleteHighlight}
