@@ -31,13 +31,14 @@ export default class Sidebar extends React.Component {
                 key={index}
                 onClick={() => {
                     this.updateHash(highlight);
+                    this.props.addItemToTree(highlight);
                 }}
             >
                 <div>
                     {highlight.content.text ? (
-                        <div style={{ marginTop: "0.5rem", color: 'black' }}>
+                        <div style={{ marginTop: "0.5rem", color: 'black', cursor: 'pointer' }}>
                             {highlight.comment.text}
-                            <div>
+                            {/* <div>
                                 <IconButton 
                                     aria-label="Delete"
                                     style={{ fontSize: 8 }}
@@ -55,7 +56,7 @@ export default class Sidebar extends React.Component {
                                         }}
                                     />
                                 </IconButton>
-                            </div>
+                            </div> */}
                         </div>
                     ) : null}
                 </div>
