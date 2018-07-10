@@ -1,0 +1,35 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-sideNav {
+    display: flex;
+    flex: 0.15;
+    height: 99vh;
+    flex-direction: column;
+    background: #D8DAE6 ;
+    border-radius: 0px 20px;
+}
+
+.main-content-area {
+    border: 2px solid blue;
+    display: flex;
+    flex: 0.85;
+}
+
+.logo-container {
+    padding: 10px;
+    display: flex;
+    /* flex: 1; */
+    height: 8vh;
+    justify-content: center;
+}
+
+.logo-img {
+    height: 50px;
+}
+
+.apps-container {
+    justify-content: center;
+}

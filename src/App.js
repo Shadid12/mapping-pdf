@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Matcher from './Matcher';
 import Login from './components/Login';
 import JsonTreeView from './components/JsonTreeView';
+import Profile from './components/Profile/Profile';
 
 //css
 import './style/App.css';
@@ -17,6 +18,7 @@ export default class App extends Component {
                     <Route exact path="/" component={Matcher} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path='/tree' component={JsonTreeView} />
+                    <Route exact path='/profile' component={Profile} />
                 </div>
             </Router>
         )
