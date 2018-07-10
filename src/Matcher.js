@@ -152,7 +152,7 @@ class Matcher extends Component {
   }
 
   render() {
-    const { highlights } = this.state;
+    const { highlights, appliedHighlights } = this.state;
     
     const HighlightPopup = ({ comment }) =>
       comment.text ? (
@@ -185,14 +185,28 @@ class Matcher extends Component {
             </Typography>
             <div className='title'></div>
             <div className='title'>
-              <Button 
-                variant="contained" 
-                color="secondary"
-                // onClick={this.downloadTree}
-                onClick={() => this.setState({ flip: !this.state.flip })}
-              >
-                Next
-              </Button>
+            {
+              this.state.flip ? (
+                <Button 
+                  variant="contained" 
+                  color="secondary"
+                  // onClick={this.downloadTree}
+                  onClick={() => this.setState({ flip: !this.state.flip })}
+                >
+                  Previous
+                </Button>
+              ) :
+              (
+                <Button 
+                  variant="contained" 
+                  color="secondary"
+                  // onClick={this.downloadTree}
+                  onClick={() => this.setState({ flip: !this.state.flip })}
+                >
+                  Next
+                </Button>
+              )
+            }
             </div>
           </Toolbar>
         </AppBar>
@@ -222,7 +236,7 @@ class Matcher extends Component {
                   {
                     this.state.flip ? (
                       <div>
-                        <Sorter tree={this.state.highlights} />
+                        <Sorter tree={this.state.appliedHighlights} />
                       </div>
                     ): (
 
@@ -301,7 +315,7 @@ class Matcher extends Component {
                                 );
 
                               }}
-                              highlights={highlights}
+                              highlights={appliedHighlights}
                             />
                           )
                         }
