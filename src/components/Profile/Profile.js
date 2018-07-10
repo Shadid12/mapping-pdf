@@ -19,13 +19,20 @@ import logo from './logo.png';
 
 // Components
 import TopBar from './TopBar/TopBar';
+import Loader from '../Loader/Loader'
 
 class Profile extends Component {
-    state = { open: true };
+    state = { open: true, loading: true };
 
     handleClick = () => {
         this.setState(state => ({ open: !state.open }));
     };
+
+    componentDidMount() {
+        setTimeout(()=> {
+            this.setState({ loading: false })
+        }, 5000)
+    }
 
     render() {
         return(
@@ -82,6 +89,11 @@ class Profile extends Component {
                 </div>
                 <div className='main-content-area'>
                     <TopBar />
+                    {
+                        this.state.loading ? (
+                            <Loader />
+                        ) : null
+                    }
                 </div>
             </div>
         )
