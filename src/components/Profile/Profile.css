@@ -34,3 +34,10 @@
 .apps-container {
     justify-content: center;
 }
+
+.chart-container {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
