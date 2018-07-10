@@ -187,14 +187,25 @@ class Matcher extends Component {
             <div className='title'>
             {
               this.state.flip ? (
-                <Button 
-                  variant="contained" 
-                  color="secondary"
-                  // onClick={this.downloadTree}
-                  onClick={() => this.setState({ flip: !this.state.flip })}
-                >
-                  Previous
-                </Button>
+                <div>
+                  <Button 
+                    variant="contained" 
+                    color="secondary"
+                    // onClick={this.downloadTree}
+                    onClick={() => this.setState({ flip: !this.state.flip })}
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    style={{ 'margin-left': '20px' }}
+                    variant="contained" 
+                    color="secondary"
+                    onClick={this.downloadTree}
+                    // onClick={() => this.setState({ flip: !this.state.flip })}
+                  >
+                    Download Json
+                  </Button>
+                </div>
               ) :
               (
                 <Button 
