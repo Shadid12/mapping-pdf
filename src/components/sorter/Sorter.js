@@ -4,6 +4,9 @@ import ReactJson from 'react-json-view';
 import Grid from '@material-ui/core/Grid';
 import download from 'downloadjs';
 import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
+
+//css
 import 'react-sortable-tree/style.css';
 import './Sorter.css'
 
@@ -13,6 +16,24 @@ import SelectBar from "../../SelectBar";
 //css
 import '../../style/App.css'
 import { exists } from "fs";
+
+// helper function
+
+const alertNodeInfo = ({ node, path, treeIndex }) => {
+    const objectString = Object.keys(node)
+      .map(k => (k === 'children' ? 'children: Array' : `${k}: '${node[k]}'`))
+      .join(',\n   ');
+
+    console.log('---->', treeIndex)
+    
+    global.alert(
+      'Info passed to the button generator:\n\n' +
+        `node: {\n   ${objectString}\n},\n` +
+        `path: [${path.join(', ')}],\n` +
+        `treeIndex: ${treeIndex}`
+    );
+};
+
 
 export default class Sorter extends React.Component {
     constructor(props) {
@@ -75,6 +96,24 @@ export default class Sorter extends React.Component {
                                 <SortableTree
                                     treeData={this.state.treeData}
                                     onChange={treeData => this.setState({ treeData })}
+                                    generateNodeProps={rowInfo => ({
+                                        buttons: [
+                                          <button
+                                            className="btn btn-outline-success"
+                                            style={{
+                                              verticalAlign: 'middle',
+                                            }}
+                                            onClick={() => alertNodeInfo(rowInfo)}
+                                          >
+                                            ℹ
+                                          </button>,
+                                          <button
+                                            onClick={ () => console.log(rowInfo) }
+                                          >
+                                              x
+                                          </button>
+                                        ],
+                                    })}
                                 />
                             )
                         }
