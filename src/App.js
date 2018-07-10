@@ -6,6 +6,9 @@ import Matcher from './Matcher';
 import Login from './components/Login';
 import JsonTreeView from './components/JsonTreeView';
 
+//css
+import './style/App.css';
+
 export default class App extends Component {
     render() {
         return(
