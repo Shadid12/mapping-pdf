@@ -73,7 +73,11 @@ class Profile extends Component {
                             subheader={<ListSubheader>Available Apps</ListSubheader>}
                         >
                             <Divider />
-                            <ListItem button>
+                            <ListItem button 
+                                onClick={
+                                    () => window.location.href='/'
+                                }
+                            >
                                 <ListItemIcon>
                                     <SendIcon />
                                 </ListItemIcon>
