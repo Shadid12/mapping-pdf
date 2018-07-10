@@ -36,12 +36,27 @@ export default class Sorter extends React.Component {
         this.setState({treeData: newTree});
     }
 
+    downloadTree = () => {
+        let obj = this.state.treeData;
+        let template = {
+          'sample': obj
+        }
+        let data = JSON.stringify(template);
+        download(data, "tree.json", "text/plain");
+    }
+
     render() {
         return(
             <div>
-                <Button variant="contained">
-                    Download
-                </Button>
+                <div className='btn-clapper'>
+                    <Button 
+                        variant="contained"
+                        onClick={this.downloadTree}
+                        disabled={!this.state.treeData.length}
+                    >
+                        Download
+                    </Button>
+                </div>
                 <div style={{ display: "flex", height: "100vh" }}>
                     <Grid container>
                         <Grid item xs={12} sm={6}>

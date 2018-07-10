@@ -2,3 +2,10 @@
     border: 2px solid red;
     display: block;
 }
+
+.btn-clapper {
+    display: flex;
+    justify-content: center;
+    border: solid 2px red;
+    padding: 20px;
+}
