@@ -1,0 +1,22 @@
+.maintop-containe {
+    display: flex;
+    height: 5vh;
+    padding: 2px;
+    /* border: 2px solid green; */
+
+    background: #fff;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.maintop-placeHolder {
+    display: flex;
+    flex: 0.75;
+}
+
+.maintop-iconcontainer {
+    display: flex;
+    flex: 0.25;
+    padding-top: 7px;
+}

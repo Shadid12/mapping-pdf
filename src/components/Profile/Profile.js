@@ -17,6 +17,8 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import './Profile.css';
 import logo from './logo.png';
 
+// Components
+import TopBar from './TopBar/TopBar';
 
 class Profile extends Component {
     state = { open: true };
@@ -43,7 +45,7 @@ class Profile extends Component {
                                 <ListItemIcon>
                                     <SendIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Mapper" />
+                                <ListItemText inset primary="Submission Mapping" />
                             </ListItem>
                             <Divider />
 
@@ -51,7 +53,7 @@ class Profile extends Component {
                                 <ListItemIcon>
                                     <DraftsIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Drafts" />
+                                <ListItemText inset primary="Policy Checker" />
                             </ListItem>
                             <Divider />
 
@@ -59,7 +61,7 @@ class Profile extends Component {
                                 <ListItemIcon>
                                     <InboxIcon />
                                 </ListItemIcon>
-                                <ListItemText inset primary="Extractor" />
+                                <ListItemText inset primary="Quotes Analyzer" />
                             </ListItem>
                             <Divider />
 
@@ -69,7 +71,7 @@ class Profile extends Component {
                                     <ListItemIcon>
                                         <StarBorder />
                                     </ListItemIcon>
-                                    <ListItemText inset primary="Starred" />
+                                    <ListItemText inset primary="Extractor" />
                                 </ListItem>
                                 </List>
                             </Collapse>
@@ -79,7 +81,7 @@ class Profile extends Component {
                     </div>
                 </div>
                 <div className='main-content-area'>
-                    Main Container
+                    <TopBar />
                 </div>
             </div>
         )
