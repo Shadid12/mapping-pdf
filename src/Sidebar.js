@@ -35,7 +35,7 @@ export default class Sidebar extends React.Component {
             >
                 <div>
                     {highlight.content.text ? (
-                        <blockquote style={{ marginTop: "0.5rem" }}>
+                        <div style={{ marginTop: "0.5rem", color: 'black' }}>
                             {highlight.comment.text}
                             <div>
                                 <IconButton 
@@ -56,7 +56,7 @@ export default class Sidebar extends React.Component {
                                     />
                                 </IconButton>
                             </div>
-                        </blockquote>
+                        </div>
                     ) : null}
                 </div>
             </Paper>

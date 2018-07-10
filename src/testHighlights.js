@@ -2,10 +2,12 @@
 
 const testHighlights = {
   "sample":[
-     {
+     {  
         "content":{
            "text":"SUBLIMITS OF LIABILITY: Defense Costs Coverage for Pollution Claims $5,000,000 Legal Representation Costs for Criminal Actions  $5,000,000 Legal Representation Costs Coverage for Inquiries  $5,000,000"
         },
+        "title":"SUBLIMITS OF LIABILITY:",
+
         "position":{
            "boundingRect":{
               "x1":225.65625,
@@ -85,6 +87,7 @@ const testHighlights = {
         "content":{
            "text":"Total $5,000,000 "
         },
+        "title": "Total",
         "position":{
            "boundingRect":{
               "x1":179.65625,
@@ -124,6 +127,7 @@ const testHighlights = {
         "content":{
            "text":"PRIOR OR PENDING LITIGATION DATE:Executive/Insured Entity Wrongdoing July 27, 2007 Wrongful Employment Practices July 27, 2007 Fiduciary Wrongdoing"
         },
+        "title": "PRIOR OR PENDING LITIGATION",
         "position":{
            "boundingRect":{
               "x1":225.65625,
@@ -195,6 +199,7 @@ const testHighlights = {
         "content":{
            "text":"ADDRESS: 24 Sussex Drive Ottawa, ON K1A 0A2"
         },
+        "title": "ADDRESS",
         "position":{
            "boundingRect":{
               "x1":201.65625,
@@ -242,6 +247,7 @@ const testHighlights = {
         "content":{
            "text":"Fiduciary Wrongdoing N/A N/A"
         },
+        "title": "Fiduciary Wrongdoing",
         "position":{
            "boundingRect":{
               "x1":179.65625,
@@ -289,6 +295,7 @@ const testHighlights = {
         "content":{
            "text":"CURRENCY: CAD"
         },
+        "title": "CURRENCY: CAD",
         "position":{
            "boundingRect":{
               "x1":201.65625,
@@ -328,6 +335,7 @@ const testHighlights = {
         "content":{
            "text":"US WRONGFUL EMPLOYMENT PRACTICES DEDUCTIBLE  $25,000 "
         },
+        "title": "US WRONGFUL EMPLOYMENT",
         "position":{
            "boundingRect":{
               "x1":161.65625,
@@ -359,6 +367,7 @@ const testHighlights = {
         "content":{
            "text":"ADDITIONAL TERMS AND CONDITIONS OF COVERAGE:"
         },
+        "title": "ADDITIONAL TERMS AND CONDITIONS",
         "position":{
            "boundingRect":{
               "x1":162,
@@ -390,6 +399,7 @@ const testHighlights = {
         "content":{
            "text":"POLICY FORM: Knote Private Advantage Liability Policy KNO (10/31)"
         },
+        "title": "POLICY FORM:",
         "position":{
            "boundingRect":{
               "x1":201.65625,
@@ -437,6 +447,7 @@ const testHighlights = {
         "content":{
            "text":"ANNUAL PREMIUM"
         },
+        "title": "ANNUAL PREMIUM",
         "position":{
            "boundingRect":{
               "x1":755.65625,
@@ -476,6 +487,7 @@ const testHighlights = {
         "content":{
            "text":"DEDUCTIBLE"
         },
+        "title": "DEDUCTIBLE",
         "position":{
            "boundingRect":{
               "x1":562.828125,
@@ -507,6 +519,7 @@ const testHighlights = {
         "content":{
            "text":"LIMITS OF LIABILITY"
         },
+        "title": "LIMITS OF LIABILITY",
         "position":{
            "boundingRect":{
               "x1":429.328125,
@@ -546,6 +559,7 @@ const testHighlights = {
         "content":{
            "text":"Executive/Insured Entity Wrongdoing"
         },
+        "title": "Executive/Insured Entity Wrongdoing",
         "position":{
            "boundingRect":{
               "x1":179.65625,
