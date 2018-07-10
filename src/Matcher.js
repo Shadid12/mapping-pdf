@@ -315,7 +315,7 @@ class Matcher extends Component {
                                 );
 
                               }}
-                              highlights={appliedHighlights}
+                              highlights={highlights}
                             />
                           )
                         }
