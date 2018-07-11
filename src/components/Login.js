@@ -7,12 +7,14 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import blue from '@material-ui/core/colors/blue';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import LockIcon from '@material-ui/icons/Lock'
+import LockIcon from '@material-ui/icons/Lock';
+import { withRouter } from 'react-router-dom';
+
 
 //css
 import './Login.css'
 
-export default class Login extends React.Component {
+class Login extends React.Component {
     render() {
         return(
             <Grid container>
@@ -52,7 +54,7 @@ export default class Login extends React.Component {
                                 <div className='btn-area'>
                                     <Button variant="contained" 
                                             color="primary"
-                                            onClick={() => window.location.href='/profile'} 
+                                            onClick={() => this.props.history.push('/profile')} 
                                     >
                                         Login
                                     </Button>
@@ -66,3 +68,5 @@ export default class Login extends React.Component {
         )
     }
 }
+
+export default withRouter(Login);

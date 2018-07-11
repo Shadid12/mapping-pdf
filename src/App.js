@@ -6,6 +6,7 @@ import Matcher from './Matcher';
 import Login from './components/Login';
 import JsonTreeView from './components/JsonTreeView';
 import Profile from './components/Profile/Profile';
+import MapLanding from './components/MapLanding/MapLanding';
 
 //css
 import './style/App.css';
@@ -19,6 +20,7 @@ export default class App extends Component {
                     <Route exact path="/login" component={Login} />
                     <Route exact path='/tree' component={JsonTreeView} />
                     <Route exact path='/profile' component={Profile} />
+                    <Route exact path='/maplanding' component={MapLanding} />
                 </div>
             </Router>
         )
