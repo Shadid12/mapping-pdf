@@ -9,6 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
+// components
+import StepUploader from '../../components/StepUploader/StepUploader'
+
 class Uploader extends Component {
     render() {
         return(
@@ -42,6 +45,9 @@ class Uploader extends Component {
                         </Button>
                         </Toolbar>
                 </AppBar>
+                <div>
+                    <StepUploader />
+                </div>
             </div>
         )
     }

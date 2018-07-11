@@ -75,7 +75,7 @@ class Profile extends Component {
                             <Divider />
                             <ListItem button 
                                 onClick={
-                                    () => window.location.href='/'
+                                    () => this.props.history.push('/maplanding')
                                 }
                             >
                                 <ListItemIcon>
