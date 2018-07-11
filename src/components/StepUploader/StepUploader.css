@@ -1,0 +1,7 @@
+.dnd-uploader {
+    margin: 10px;
+    display: flex;
+    border: 2px dashed cyan;
+    padding: 5px;
+    justify-content: center;
+}

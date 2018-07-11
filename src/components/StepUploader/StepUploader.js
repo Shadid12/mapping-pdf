@@ -4,13 +4,20 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+import FileDrop from 'react-file-drop';
 
+//css
+import './StepUploader.css'
 
 class StepUploader extends React.Component {
     state = {
         activeStep: 0
     };
+
+    handleDrop = (files, event) => {
+        console.log(files, event);
+    }
 
     handleReset = () => {
         this.setState({
@@ -68,6 +75,17 @@ class StepUploader extends React.Component {
                     })
                 }
                 </Stepper>
+                <div>
+                    {
+                        activeStep === 0 ? (
+                            <div id="react-file-drop-demo" className='dnd-uploader'>
+                                <FileDrop onDrop={this.handleDrop}>
+                                Drop some files here!
+                                </FileDrop>
+                            </div>
+                        ): null
+                    }
+                </div>
                 <div>
                     {activeStep === steps.length ? (
                     <div>
