@@ -1,10 +1,8 @@
 import React from "react";
 import SortableTree, { removeNodeAtPath } from 'react-sortable-tree';
-import ReactJson from 'react-json-view';
 import Grid from '@material-ui/core/Grid';
 import download from 'downloadjs';
 import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
 
 //css
 import 'react-sortable-tree/style.css';
@@ -15,24 +13,10 @@ import SelectBar from "../../SelectBar";
 
 //css
 import '../../style/App.css'
-import { exists } from "fs";
 
-// helper function
+// dummy data
+import testHighlights from "../../testHighlights";
 
-const alertNodeInfo = ({ node, path, treeIndex }) => {
-    const objectString = Object.keys(node)
-      .map(k => (k === 'children' ? 'children: Array' : `${k}: '${node[k]}'`))
-      .join(',\n   ');
-
-    console.log('---->', treeIndex)
-    
-    global.alert(
-      'Info passed to the button generator:\n\n' +
-        `node: {\n   ${objectString}\n},\n` +
-        `path: [${path.join(', ')}],\n` +
-        `treeIndex: ${treeIndex}`
-    );
-};
 
 
 export default class Sorter extends React.Component {
@@ -41,6 +25,7 @@ export default class Sorter extends React.Component {
     
         this.state = {
           treeData: this.props.tree,
+          treeProp: testHighlights['sample']
         };
     }
 
@@ -84,6 +69,7 @@ export default class Sorter extends React.Component {
                         <Grid item xs={12} sm={6}>
                             <SelectBar 
                                 addItemToTree={this.addItemToTree}
+                                tree={this.state.treeProp}
                                 removeItemFromTree={this.removeItemFromTree}
                             />
                         </Grid>

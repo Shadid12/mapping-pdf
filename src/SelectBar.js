@@ -21,17 +21,12 @@ export default class SelectBar extends React.Component {
 
     render() {
         const {removeableItems} = this.state;
-        const highlights = this.state.treeData;
+        const highlights = this.props.tree;
         const highlitedItem = highlights.map(( highlight, index ) => (
             <Paper
                 className='paper'
                 key={index}
                 onClick={() => {
-                    let newTree = this.state.treeData.filter((i) => {
-                        return i.id !== highlight.id
-                    })
-                    this.setState({ treeData: newTree, 
-                                    removeableItems: [highlight, ...this.state.removeableItems] })
                     this.props.addItemToTree(highlight);
                 }}
             >
@@ -49,14 +44,6 @@ export default class SelectBar extends React.Component {
             <Paper
                 className='paper'
                 key={index}
-                // onClick={() => {
-                //     let newTree = this.state.removeableItems.filter((i) => {
-                //         return i.id !== item.id
-                //     })
-                //     this.setState({ removeableItems: newTree, 
-                //                     treeData: [item, ...this.state.treeData] })
-                //     this.props.removeItemFromTree(item);
-                // }}
             >
                 <div>
                     {item.content.text ? (
@@ -72,7 +59,7 @@ export default class SelectBar extends React.Component {
             <div>
                 <ul className='sidebar--container'>
                     { highlitedItem }
-                    { removeables }
+                    {/* { removeables } */}
                 </ul>
             </div>
         )
