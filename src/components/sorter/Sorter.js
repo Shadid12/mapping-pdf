@@ -1,5 +1,5 @@
 import React from "react";
-import SortableTree from 'react-sortable-tree';
+import SortableTree, { removeNodeAtPath } from 'react-sortable-tree';
 import ReactJson from 'react-json-view';
 import Grid from '@material-ui/core/Grid';
 import download from 'downloadjs';
@@ -67,6 +67,7 @@ export default class Sorter extends React.Component {
     }
 
     render() {
+        const getNodeKey = ({ treeIndex }) => treeIndex;
         return(
             <div>
                 <div className='btn-clapper'>
@@ -96,19 +97,18 @@ export default class Sorter extends React.Component {
                                 <SortableTree
                                     treeData={this.state.treeData}
                                     onChange={treeData => this.setState({ treeData })}
-                                    generateNodeProps={rowInfo => ({
+                                    generateNodeProps={({ node, path }) => ({
                                         buttons: [
                                           <button
-                                            className="btn btn-outline-success"
-                                            style={{
-                                              verticalAlign: 'middle',
-                                            }}
-                                            onClick={() => alertNodeInfo(rowInfo)}
-                                          >
-                                            ℹ
-                                          </button>,
-                                          <button
-                                            onClick={ () => console.log(rowInfo) }
+                                            onClick={() =>
+                                                this.setState(state => ({
+                                                treeData: removeNodeAtPath({
+                                                    treeData: state.treeData,
+                                                    path,
+                                                    getNodeKey,
+                                                }),
+                                                }))
+                                            }
                                           >
                                               x
                                           </button>

@@ -64,13 +64,6 @@ export default class Sidebar extends React.Component {
         ))
         return(
             <div>
-                <IconButton aria-label="Delete">
-                    <LoopIcon 
-                        onClick={() => {
-                            this.props.resetHighlights();
-                        }}
-                    />
-                </IconButton>
                 <ul className='sidebar--container'>
                     { highlitedItem }
                 </ul>

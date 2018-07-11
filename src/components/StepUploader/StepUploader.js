@@ -16,7 +16,7 @@ class StepUploader extends React.Component {
     };
 
     handleDrop = (files, event) => {
-        console.log(files, event);
+        console.log(files[0].name);
     }
 
     handleReset = () => {

@@ -49,14 +49,14 @@ export default class SelectBar extends React.Component {
             <Paper
                 className='paper'
                 key={index}
-                onClick={() => {
-                    let newTree = this.state.removeableItems.filter((i) => {
-                        return i.id !== item.id
-                    })
-                    this.setState({ removeableItems: newTree, 
-                                    treeData: [item, ...this.state.treeData] })
-                    this.props.removeItemFromTree(item);
-                }}
+                // onClick={() => {
+                //     let newTree = this.state.removeableItems.filter((i) => {
+                //         return i.id !== item.id
+                //     })
+                //     this.setState({ removeableItems: newTree, 
+                //                     treeData: [item, ...this.state.treeData] })
+                //     this.props.removeItemFromTree(item);
+                // }}
             >
                 <div>
                     {item.content.text ? (
