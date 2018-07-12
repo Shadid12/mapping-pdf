@@ -1,8 +1,8 @@
 import React from "react";
 import SortableTree, { removeNodeAtPath, addNodeUnderParent } from 'react-sortable-tree';
-import Grid from '@material-ui/core/Grid';
 import download from 'downloadjs';
 import Button from '@material-ui/core/Button';
+import { diff, addedDiff, deletedDiff, updatedDiff, detailedDiff } from 'deep-object-diff';
 
 //css
 import 'react-sortable-tree/style.css';
@@ -92,6 +92,7 @@ export default class Sorter extends React.Component {
                             (
                                 <SortableTree
                                     treeData={this.state.treeData}
+                                    expanded={true}
                                     onChange={treeData => this.setState({ treeData })}
                                     generateNodeProps={({ node, path }) => ({
                                         buttons: [
@@ -108,20 +109,21 @@ export default class Sorter extends React.Component {
                                                 }))
                                             }
                                             >
-                                            Add Child
+                                            +
                                           </button>,
                                           <button
-                                            onClick={() =>
+                                            onClick={() => {
                                                 this.setState(state => ({
-                                                treeData: removeNodeAtPath({
-                                                    treeData: state.treeData,
-                                                    path,
-                                                    getNodeKey,
-                                                }),
-                                                }))
+                                                    treeData: removeNodeAtPath({
+                                                        treeData: state.treeData,
+                                                        path,
+                                                        getNodeKey,
+                                                    }),
+                                                    }))
+                                            }
                                             }
                                           >
-                                              x
+                                              -
                                           </button>
                                         ],
                                     })}
