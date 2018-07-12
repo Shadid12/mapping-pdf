@@ -2,7 +2,14 @@ import React from "react";
 import SortableTree, { removeNodeAtPath, addNodeUnderParent } from 'react-sortable-tree';
 import download from 'downloadjs';
 import Button from '@material-ui/core/Button';
-import { diff, addedDiff, deletedDiff, updatedDiff, detailedDiff } from 'deep-object-diff';
+
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import InputLabel from '@material-ui/core/InputLabel';
 
 //css
 import 'react-sortable-tree/style.css';
@@ -27,7 +34,10 @@ export default class Sorter extends React.Component {
         this.state = {
         //   treeData: this.props.tree,
           treeData: sampleData,
-          treeProp: testHighlights['sample']
+          treeProp: testHighlights['sample'],
+          showCreateNode: false,
+          newNodeTitle: '',
+          path: sampleData.length
         };
     }
 
@@ -53,18 +63,60 @@ export default class Sorter extends React.Component {
         download(data, "tree.json", "text/plain");
     }
 
-    getNodeNew = () => {
+    getNodeNew = (title) => {
         return {
-            'title': 'Random New Node',
+            'title': title,
             'content': 'I am content',
             'children': []
         }
+    }
+
+    createNode = () => {
+        const getNodeKey = ({ treeIndex }) => treeIndex;
+        this.setState(state => ({
+                        showCreateNode: false,
+                        treeData: addNodeUnderParent({
+                            treeData: state.treeData,
+                            parentKey: this.state.path[this.state.path.length - 1],
+                            expandParent: true,
+                            getNodeKey,
+                            newNode: this.getNodeNew(this.state.newNodeTitle),
+                        }).treeData,
+        }))
+    }
+
+    handleCreateNodeInput = (e) => {
+        this.setState({newNodeTitle: e.target.value});
     }
 
     render() {
         const getNodeKey = ({ treeIndex }) => treeIndex;
         return(
             <div>
+                <Dialog
+                    open={this.state.showCreateNode}
+                    onClose={() => {this.setState({ showCreateNode: false })}}
+                    aria-labelledby="form-dialog-title"
+                >
+                <DialogTitle id="form-dialog-title">Create New Node</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Create a New Node
+                    </DialogContentText>
+                    <TextField
+                        label="Title"
+                        autoFocus
+                        margin="dense"
+                        fullWidth
+                        onChange={this.handleCreateNodeInput}
+                    />
+                    <DialogActions>
+                        <Button onClick={this.createNode} color="primary">
+                            Create
+                        </Button>
+                    </DialogActions>
+                </DialogContent>
+                </Dialog>
                 <div className='btn-clapper'>
                     <Button 
                         variant="contained"
@@ -97,16 +149,26 @@ export default class Sorter extends React.Component {
                                     generateNodeProps={({ node, path }) => ({
                                         buttons: [
                                          <button
-                                            onClick={() =>
-                                                this.setState(state => ({
-                                                treeData: addNodeUnderParent({
-                                                    treeData: state.treeData,
-                                                    parentKey: path[path.length - 1],
-                                                    expandParent: true,
-                                                    getNodeKey,
-                                                    newNode: this.getNodeNew(),
-                                                }).treeData,
-                                                }))
+                                            onClick={() => {
+                                                console.log(getNodeKey)
+                                                this.setState({
+                                                    showCreateNode: true, 
+                                                    path: path, 
+                                                    getNodeKey: getNodeKey
+                                                })
+                                                // let newNodeTitle = window.prompt('Enter Node Title');
+                                                // if (newNodeTitle) {
+                                                //     this.setState(state => ({
+                                                //         treeData: addNodeUnderParent({
+                                                //             treeData: state.treeData,
+                                                //             parentKey: path[path.length - 1],
+                                                //             expandParent: true,
+                                                //             getNodeKey,
+                                                //             newNode: this.getNodeNew(newNodeTitle),
+                                                //         }).treeData,
+                                                //     }))
+                                                // }
+                                            }
                                             }
                                             >
                                             +
