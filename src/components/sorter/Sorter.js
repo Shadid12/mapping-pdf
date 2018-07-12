@@ -9,7 +9,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import InputLabel from '@material-ui/core/InputLabel';
+import AddIcon from '@material-ui/icons/Add';
+import Icon from '@material-ui/core/Icon';
+
 
 //css
 import 'react-sortable-tree/style.css';
@@ -148,7 +150,10 @@ export default class Sorter extends React.Component {
                                     onChange={treeData => this.setState({ treeData })}
                                     generateNodeProps={({ node, path }) => ({
                                         buttons: [
-                                         <button
+                                         <Button
+                                            variant="outlined"
+                                            color='primary'
+                                            classes='add-button'
                                             onClick={() => {
                                                 console.log(getNodeKey)
                                                 this.setState({
@@ -172,8 +177,10 @@ export default class Sorter extends React.Component {
                                             }
                                             >
                                             +
-                                          </button>,
-                                          <button
+                                          </Button>,
+                                          <Button
+                                            variant="outlined"
+                                            color='secondary'
                                             onClick={() => {
                                                 this.setState(state => ({
                                                     treeData: removeNodeAtPath({
@@ -185,8 +192,8 @@ export default class Sorter extends React.Component {
                                             }
                                             }
                                           >
-                                              -
-                                          </button>
+                                            -
+                                          </Button>
                                         ],
                                     })}
                                 />
