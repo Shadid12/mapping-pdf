@@ -1,5 +1,5 @@
 import React from "react";
-import SortableTree, { removeNodeAtPath, addNodeUnderParent } from 'react-sortable-tree';
+import SortableTree, { removeNodeAtPath } from 'react-sortable-tree';
 import Grid from '@material-ui/core/Grid';
 import download from 'downloadjs';
 import Button from '@material-ui/core/Button';
@@ -16,7 +16,6 @@ import '../../style/App.css'
 
 // dummy data
 import testHighlights from "../../testHighlights";
-import sampleData from './sample';
 
 
 
@@ -25,8 +24,7 @@ export default class Sorter extends React.Component {
         super(props);
     
         this.state = {
-        //   treeData: this.props.tree,
-          treeData: sampleData,
+          treeData: this.props.tree,
           treeProp: testHighlights['sample']
         };
     }
@@ -53,14 +51,6 @@ export default class Sorter extends React.Component {
         download(data, "tree.json", "text/plain");
     }
 
-    getNodeNew = () => {
-        return {
-            'title': 'Random New Node',
-            'content': 'I am content',
-            'children': []
-        }
-    }
-
     render() {
         const getNodeKey = ({ treeIndex }) => treeIndex;
         return(
@@ -75,7 +65,7 @@ export default class Sorter extends React.Component {
                     </Button>
                 </div>
                 <div style={{ display: "flex", height: "100vh" }}>
-                    {/* <Grid container>
+                    <Grid container>
                         <Grid item xs={12} sm={6}>
                             <SelectBar 
                                 addItemToTree={this.addItemToTree}
@@ -83,8 +73,8 @@ export default class Sorter extends React.Component {
                                 removeItemFromTree={this.removeItemFromTree}
                             />
                         </Grid>
-                    </Grid> */}
-                    <div style={{ height: '100vh', width: '100vw' ,display: 'inline-block', color: 'black' }}>
+                    </Grid>
+                    <div style={{ height: 500, width: '100vw' ,display: 'inline-block', color: 'black' }}>
                         {
                             this.state.treeData.length === 0 ? (
                                 <div>Click on the tabs to add Data</div>
@@ -95,21 +85,6 @@ export default class Sorter extends React.Component {
                                     onChange={treeData => this.setState({ treeData })}
                                     generateNodeProps={({ node, path }) => ({
                                         buttons: [
-                                         <button
-                                            onClick={() =>
-                                                this.setState(state => ({
-                                                treeData: addNodeUnderParent({
-                                                    treeData: state.treeData,
-                                                    parentKey: path[path.length - 1],
-                                                    expandParent: true,
-                                                    getNodeKey,
-                                                    newNode: this.getNodeNew(),
-                                                }).treeData,
-                                                }))
-                                            }
-                                            >
-                                            Add Child
-                                          </button>,
                                           <button
                                             onClick={() =>
                                                 this.setState(state => ({
